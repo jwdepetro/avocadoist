@@ -43,7 +43,7 @@ class PostComment(AbstractBaseModel):
     """
     Blog post comment
     """
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments')
     anonymous_user = models.ForeignKey(AnonymousUser, on_delete=models.CASCADE)
     comment = models.CharField(_('comment'), max_length=250)
 
@@ -69,7 +69,7 @@ class PostTag(AbstractBaseModel):
     """
     Blog post tag
     """
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_tags')
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
 
     class Meta:
