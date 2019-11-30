@@ -15,6 +15,9 @@ class Tag(AbstractBaseModel):
     class Meta:
         db_table = 'blog_tag'
 
+    def __str__(self):
+        return self.name
+
 
 class Post(AbstractBaseModel):
     """
@@ -32,6 +35,9 @@ class Post(AbstractBaseModel):
     class Meta:
         db_table = 'blog_post'
 
+    def __str__(self):
+        return self.title
+
 
 class PostComment(AbstractBaseModel):
     """
@@ -43,6 +49,9 @@ class PostComment(AbstractBaseModel):
 
     class Meta:
         db_table = 'blog_post_comment'
+
+    def __str__(self):
+        return self.comment
 
 
 class PostImage(AbstractBaseModel):
@@ -65,3 +74,6 @@ class PostTag(AbstractBaseModel):
 
     class Meta:
         db_table = 'blog_post_tag'
+
+    def __str__(self):
+        return '{} - {}'.format(self.post.title, self.tag.name)

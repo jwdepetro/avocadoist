@@ -20,6 +20,9 @@ class User(AbstractUser):
     class Meta:
         db_table = 'user_user'
 
+    def __str__(self):
+        return self.email
+
 
 class AnonymousUser(AbstractBaseModel):
     """
@@ -34,3 +37,6 @@ class AnonymousUser(AbstractBaseModel):
 
     class Meta:
         db_table = 'user_anonymous_user'
+
+    def __str__(self):
+        return self.name
