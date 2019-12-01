@@ -1,0 +1,114 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #e1e8ee;
+    background-image: url("mountains.png");
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    background-position: bottom;
+}
+
+#main {
+    min-height: 75%;
+}
+
+button:focus {
+    outline: none;
+}
+
+@media only screen and (max-width: 575.99px) {
+    #header-title, #header-title.header-small {
+        font-size: 2rem;
+    }
+    #header-subtitle, #header-subtitle.header-small {
+        font-size: 1rem;
+    }
+    #main {
+        margin-top: 8rem;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    #header-title {
+        font-size: 5rem;
+    }
+    #header-subtitle {
+        font-size: 1.5rem;
+        margin-left: .5rem;
+    }
+    #header-title.header-small {
+        font-size: 2rem !important;
+    }
+    #header-subtitle.header-small {
+        font-size: 1rem !important;
+        margin-left: 0;
+    }
+    #main {
+        margin-top: 13rem;
+    }
+}
+
+#header {
+    background-color: #6c4d6f !important;
+    -webkit-box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, .25);
+    -moz-box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, .25);
+    box-shadow: 0px 0px 9px 3px rgba(41, 41, 41, .25);
+}
+
+#header-title {
+    font-family: 'Amatic SC', cursive;
+    transition: 0.2s;
+    color: #e1e8ee;
+}
+
+#header-subtitle {
+    font-family: 'Amatic SC', cursive;
+    transition: 0.2s;
+    color: #e1e8ee;
+    /* margin-bottom: 0; */
+}
+
+.header-link, .footer-link, .header-link:hover, .footer-link:hover {
+    color: #e1e8ee;
+}
+
+.social-link, .social-link:hover {
+    color: #6c4d6f;
+}
+
+#footer {
+    width: 100%;
+    height: 60px;
+    color: #e1e8ee;
+}
+
+#copyright {
+    font-size: .5rem;
+}
+
+.btn-primary {
+    color: #e1e8ee;
+    background-color: #9fb199;
+    border-color: #9fb199;
+}
+
+.btn-primary:hover {
+    color: #e1e8ee;
+    background-color: #7a8875;
+    border-color: #7a8875;
+}
+
+.edit-post {
+    color: #9fb199;
+}
+
+.card {
+    border: none;
+}
+
+.post-more-link, .post-more-link:hover {
+    color: #7a8875
+}
+
+.post-comment {
+    font-size: .7rem;
+}
