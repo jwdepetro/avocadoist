@@ -86,15 +86,15 @@ button:focus {
 }
 
 .btn-primary {
-    color: #e1e8ee;
-    background-color: #9fb199;
-    border-color: #9fb199;
+    color: #e1e8ee !important;
+    background-color: #9fb199 !important;
+    border-color: #9fb199 !important;
 }
 
 .btn-primary:hover {
-    color: #e1e8ee;
-    background-color: #7a8875;
-    border-color: #7a8875;
+    color: #e1e8ee !important;
+    background-color: #7a8875 !important;
+    border-color: #7a8875 !important;
 }
 
 .edit-post {
