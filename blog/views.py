@@ -19,7 +19,7 @@ def index(request):
     else:
         post_list = Post.objects.all()
 
-    post_list = post_list.order_by('created_at')
+    post_list = post_list.order_by('-created_at')
     paginator = Paginator(post_list, 50)
     posts = paginator.get_page(page)
     tags = PostTag.objects.values('tag__name').annotate(count=Count('tag')).order_by('-count')
