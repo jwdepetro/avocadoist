@@ -34,12 +34,12 @@
 </head>
 
 <body>
-{% include "base/header.html" %}
+{% include 'base/header.html' %}
 <div id="main">
     {% block content %}
     {% endblock %}
 </div>
-
+{% include 'base/footer.html' %}
 </body>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -49,6 +49,7 @@
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'UA-127718043-1');
+
 
 </script>
 
