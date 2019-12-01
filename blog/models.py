@@ -24,6 +24,7 @@ class Post(AbstractBaseModel):
     Blog post
     """
     title = models.CharField(_('title'), max_length=250)
+    slug = models.CharField(_('slug'), max_length=250, unique=True)
     body = models.TextField(_('body'))
     meta_title = models.CharField(_('meta title'), max_length=250, null=True)
     meta_description = models.CharField(_('meta description'), max_length=1000, null=True)

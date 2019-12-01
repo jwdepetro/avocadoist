@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Count
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from blog.models import Post, PostTag
 
 
@@ -27,4 +27,12 @@ def index(request):
     return render(request, 'post/index.html', {
         'posts': posts,
         'tags': tags
+    })
+
+
+def view(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+
+    return render(request, 'post/view.html', {
+        'post': post
     })

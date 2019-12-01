@@ -1,0 +1,61 @@
+{% extends 'base/index.html' %}
+
+{% block content %}
+
+<meta name="title" content="{{post.meta_title}}">
+<meta name="description" content="{{post.meta_description}}">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col col-md-11 col-lg-8">
+            <div class="card my-4" id="p{{ post.id }}">
+
+                {% include 'image/carousel.html' %}
+
+                <div class="card-body">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-12 col-md-6">
+                            <h2 class="card-title">
+                                {{ post.title }}
+                            </h2>
+                        </div>
+                        <div class="col-12 col-md-6 float-md-right pb-2 pb-md-0">
+                            <small class="float-md-right">
+                                {{ post.created_at | date:'F j, Y g:i A' }}
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            {% for post_tag in post.post_tags.all %}
+                            <a class="btn btn-primary my-1" href="{% url 'index' %}?tag={{ post_tag.tag.name }}">
+                                {{post_tag.tag.name}}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <p id="pb{{ post.id }}" style="white-space: pre-wrap;">{{ post.body }}</p>
+                    <hr>
+                    <div class="row mb-2" id="comments">
+                        <div class="col">
+                            {% for post_comment in post.post_comments.all %}
+                            <p class="post-comment">
+                                <strong>{{post_comment.anonymous_user.name}}</strong>&nbsp;{{post_comment.comment}}
+                            </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <form action="" method="POST" enctype="multipart/form-data" novalidate>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
