@@ -58,8 +58,8 @@ class PostImage(AbstractBaseModel):
     """
     Blog post image
     """
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_images')
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='post_images')
 
     class Meta:
         db_table = 'blog_post_image'

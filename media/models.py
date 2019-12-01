@@ -14,3 +14,6 @@ class Image(AbstractBaseModel):
 
     class Meta:
         db_table = 'media_image'
+
+    def __str__(self):
+        return self.name

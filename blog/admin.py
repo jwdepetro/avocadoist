@@ -10,9 +10,14 @@ class PostCommentInline(admin.TabularInline):
     model = PostComment
 
 
+class PostImageInline(admin.TabularInline):
+    model = PostImage
+
+
 class PostAdmin(admin.ModelAdmin):
     inlines = [
         PostTagInline,
+        PostImageInline,
         PostCommentInline
     ]
 
