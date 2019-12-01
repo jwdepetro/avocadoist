@@ -23,7 +23,6 @@ class Post(AbstractBaseModel):
     """
     Blog post
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(_('title'), max_length=250)
     body = models.TextField(_('body'))
     meta_title = models.CharField(_('meta title'), max_length=250, null=True)

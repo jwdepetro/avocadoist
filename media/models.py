@@ -10,7 +10,7 @@ class Image(AbstractBaseModel):
     name = models.CharField(_('asset name'), max_length=250)
     meta_title = models.CharField(_('meta title'), max_length=250, null=True)
     meta_description = models.CharField(_('meta description'), max_length=1000, null=True)
-    image = models.FileField()
+    image = models.FileField(upload_to='uploads')
 
     class Meta:
         db_table = 'media_image'

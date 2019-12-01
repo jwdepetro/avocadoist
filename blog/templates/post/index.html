@@ -36,7 +36,7 @@
                     <div class="row mb-2">
                         <div class="col-12">
                             {% for post_tag in post.post_tags.all %}
-                            <a class="btn btn-primary my-1">{{ post_tag.tag.name }}</a>
+                            <a class="btn btn-primary my-1" href="?tag={{ post_tag.tag.name }}">{{ post_tag.tag.name }}</a>
                             {% endfor %}
                         </div>
                     </div>

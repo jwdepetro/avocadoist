@@ -15,7 +15,7 @@ def index(request):
     tag = request.GET.get('tag', None)
 
     if tag:
-        post_list = Post.objects.filter(posttag__tag__name=tag)
+        post_list = Post.objects.filter(post_tags__tag__name=tag)
     else:
         post_list = Post.objects.all()
 
