@@ -1,0 +1,59 @@
+<nav class="navbar fixed-top" id="header">
+    <div>
+        <a class="navbar-brand" href="{% url 'index' %}" id="header-title">
+            The Avocadoist
+            {% if active_tag %}
+            |&nbsp;{{active_tag}}
+            {% endif %}
+        </a>
+        <p id="header-subtitle">
+            Be Kind. Live Simply. Adventure Often.
+        </p>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars header-link"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="mr-auto"></div>
+        <ul class="navbar-nav text-center">
+            <li class="nav-item">
+                <a class="nav-link header-link"">
+                    <i class="fas fa-grin-beam"></i>&nbsp;About Me
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link header-link" href="https://www.instagram.com/the_avocadoist" target="_blank">
+                    <i class="fab fa-instagram"></i>&nbsp;Avocadoist
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link header-link" href="https://www.instagram.com/carlirae__" target="_blank">
+                    <i class="fab fa-instagram"></i>&nbsp;Personal
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link header-link" href="https://www.linkedin.com/in/carli-auran-7a884834/"
+                   target="_blank">
+                    <i class="fab fa-linkedin"></i></i>&nbsp;Business
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            document.getElementById("header-title").classList.add('header-small');
+            document.getElementById("header-subtitle").classList.add('header-small');
+        } else {
+            document.getElementById("header-title").classList.remove('header-small');
+            document.getElementById("header-subtitle").classList.remove('header-small');
+        }
+    }
+
+</script>
