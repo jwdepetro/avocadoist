@@ -38,4 +38,4 @@ class AnonymousUser(AbstractBaseModel):
         db_table = 'user_anonymous_user'
 
     def __str__(self):
-        return self.name
+        return self.identifier

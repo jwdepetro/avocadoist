@@ -16,8 +16,8 @@ class PostImageInline(admin.TabularInline):
 
 class PostAdmin(admin.ModelAdmin):
     inlines = [
-        PostTagInline,
         PostImageInline,
+        PostTagInline,
         PostCommentInline
     ]
 
