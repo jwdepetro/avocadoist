@@ -19,6 +19,9 @@ class Tag(AbstractBaseModel):
     def __str__(self):
         return self.name
 
+    def post_count(self):
+        return self.post_tags.count()
+
 
 class Post(AbstractBaseModel):
     """
@@ -32,6 +35,18 @@ class Post(AbstractBaseModel):
 
     # Override the default created_at to make this editable
     created_at = models.DateTimeField(_('created at'), default=timezone.now)
+
+    def comment_count(self):
+        return self.post_comments.count()
+
+    def image_count(self):
+        return self.post_images.count()
+
+    def tags(self):
+        tags = []
+        for post_tag in self.post_tags.all():
+            tags.append(post_tag.tag.name)
+        return ', '.join(sorted(tags))
 
     class Meta:
         db_table = 'blog_post'
@@ -49,6 +64,12 @@ class PostComment(AbstractBaseModel):
     name = models.CharField(_('name'), max_length=30)
     comment = models.CharField(_('comment'), max_length=250)
 
+    def post_title(self):
+        return self.post.title
+
+    def is_user_blocked(self):
+        return self.anonymous_user.is_blocked
+
     class Meta:
         db_table = 'blog_post_comment'
         ordering = ['-created_at']
@@ -64,8 +85,17 @@ class PostImage(AbstractBaseModel):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_images')
     image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='post_images')
 
+    def post_title(self):
+        return self.post.title
+
+    def image_name(self):
+        return self.image.name
+
     class Meta:
         db_table = 'blog_post_image'
+
+    def __str__(self):
+        return self.image.name
 
 
 class PostTag(AbstractBaseModel):
@@ -73,7 +103,13 @@ class PostTag(AbstractBaseModel):
     Blog post tag
     """
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_tags')
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='post_tags')
+
+    def post_title(self):
+        return self.post.title
+
+    def tag_name(self):
+        return self.tag.name
 
     class Meta:
         db_table = 'blog_post_tag'

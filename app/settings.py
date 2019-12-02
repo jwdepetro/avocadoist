@@ -37,6 +37,11 @@ ROOT_URLCONF = 'app.urls'
 # region Installed apps
 
 INSTALLED_APPS = [
+
+    # Custom admin has to be added before Django
+    'admin_interface',
+    'colorfield',
+
     # Django
     'django.contrib.admin',
     'django.contrib.auth',

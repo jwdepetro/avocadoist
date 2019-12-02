@@ -1,11 +1,11 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from user.models import User, AnonymousUser
 from user.forms import CustomUserCreationForm, CustomerUserChangeForm
 from django.utils.translation import ugettext_lazy as _
 
 
-class CustomUserAdmin(UserAdmin):
+class UserAdmin(BaseUserAdmin):
     add_form = CustomUserCreationForm
     form = CustomerUserChangeForm
     model = User
@@ -27,5 +27,11 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('email',)
 
 
-admin.site.register(User, CustomUserAdmin)
-admin.site.register(AnonymousUser)
+class AnonymousUserAdmin(admin.ModelAdmin):
+    list_display = ('identifier', 'ip_address', 'is_blocked', 'created_at')
+    list_filter = ('identifier', 'ip_address', 'is_blocked', 'created_at')
+    search_fields = ('identifier', 'ip_address')
+
+
+admin.site.register(User, UserAdmin)
+admin.site.register(AnonymousUser, AnonymousUserAdmin)

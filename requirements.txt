@@ -1,6 +1,10 @@
 boto3==1.10.28
 botocore==1.13.28
 Django==2.2.7
+django-admin-interface==0.11.2
+django-colorfield==0.1.15
+django-flat-responsive==2.0
+django-flat-theme==1.1.4
 django-recaptcha==2.0.5
 django-richtextfield==1.4.0
 django-storages==1.8
