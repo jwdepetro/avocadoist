@@ -30,7 +30,6 @@ class AnonymousUser(AbstractBaseModel):
     """
     identifier = models.CharField(_('anonymous identifier'), unique=True, max_length=1000)
     ip_address = models.GenericIPAddressField(_('ip address'))
-    name = models.CharField(_('anonymous name'), max_length=50)
     is_blocked = models.BooleanField(_('is blocked'), default=False)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     updated_at = models.DateTimeField(_('updated at'), auto_now=True)

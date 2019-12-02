@@ -38,17 +38,28 @@
                     <hr>
                     <div class="row mb-2" id="comments">
                         <div class="col">
-                            {% for post_comment in post.post_comments.all %}
+                            {% for post_comment in post.post_comments.all|slice:':5' %}
                             <p class="post-comment">
-                                <strong>{{post_comment.anonymous_user.name}}</strong>&nbsp;{{post_comment.comment}}
+                                <strong>{{post_comment.name}}</strong>&nbsp;{{post_comment.comment}}
                             </p>
                             {% endfor %}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <form action="" method="POST" enctype="multipart/form-data" novalidate>
-
+                            <form action="{% url 'comment' slug=post.slug %}" method="POST" enctype="multipart/form-data" novalidate>
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    {{ form.name }}
+                                    {{ form.name.errors }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.comment }}
+                                    {{ form.comment.errors }}
+                                </div>
+                                <div class="my-2">
+                                    <input type="submit" value="Comment" class="btn btn-primary btn-block">
+                                </div>
                             </form>
                         </div>
                     </div>

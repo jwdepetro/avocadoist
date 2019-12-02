@@ -45,10 +45,12 @@ class PostComment(AbstractBaseModel):
     """
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments')
     anonymous_user = models.ForeignKey(AnonymousUser, on_delete=models.CASCADE)
+    name = models.CharField(_('name'), max_length=30)
     comment = models.CharField(_('comment'), max_length=250)
 
     class Meta:
         db_table = 'blog_post_comment'
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.comment

@@ -112,3 +112,9 @@ button:focus {
 .post-comment {
     font-size: .7rem;
 }
+
+.errorList {
+    font-size: .7rem;
+    color: #6B4D6F;
+    padding-top: .3rem;
+}
