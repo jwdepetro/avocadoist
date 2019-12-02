@@ -25,10 +25,7 @@ def index(request):
     posts = paginator.get_page(page)
     tags = PostTag.objects.values('tag__name').annotate(count=Count('tag')).order_by('-count')
 
-    return render(request, 'post/index.html', {
-        'posts': posts,
-        'tags': tags
-    })
+    return render(request, 'post/index.html', {'posts': posts, 'tags': tags})
 
 
 def view(request, slug):
