@@ -10,6 +10,4 @@ def index(request):
     """
     user_profile = UserProfile.objects.first()
 
-    return render(request, 'profile/index.html', {
-        'user_profile': user_profile
-    })
+    return render(request, 'profile/index.html', {'user_profile': user_profile})

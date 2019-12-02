@@ -1,10 +1,7 @@
 <nav class="navbar fixed-top" id="header">
     <div>
         <a class="navbar-brand" href="{% url 'index' %}" id="header-title">
-            The Avocadoist
-            {% if active_tag %}
-            |&nbsp;{{active_tag}}
-            {% endif %}
+            The Avocadoist{% if subtitle %} |&nbsp;{{subtitle}} {% endif %}
         </a>
         <p id="header-subtitle">
             Be Kind. Live Simply. Adventure Often.
