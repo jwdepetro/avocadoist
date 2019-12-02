@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'blog',
 
     # Vendors
-    'storages'
+    'storages',
+    'captcha'
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,9 @@ AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 # Storage
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Recaptcha
+
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
+
+RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
