@@ -3,7 +3,7 @@
 python manage.py migrate --noinput
 python manage.py collectstatic --noinput
 
-if [ "$DEBUG" = 1 ]; then
+if [ "$APP_DEBUG" = 1 ]; then
     echo "starting gunicorn for development"
     gunicorn --bind 0.0.0.0:8002 --reload app.wsgi:application
 else
