@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'user',
     'media',
     'blog',
+    'social',
 
     # Vendors
     'storages',
