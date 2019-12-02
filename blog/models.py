@@ -1,6 +1,6 @@
 from django.db import models
 from media.models import Image
-from user.models import User, AnonymousUser
+from user.models import AnonymousUser
 from app.models import AbstractBaseModel
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
