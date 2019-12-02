@@ -14,7 +14,7 @@ services:
       - db_nw
   app:
     build: .
-#    image: "jwdepetro/avocadoist"
+    image: "jwdepetro/avocadoist"
     env_file:
       - .env
     volumes:
