@@ -13,7 +13,9 @@ services:
     networks:
       - db_nw
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: ./config/app/Dockerfile
     image: "jwdepetro/avocadoist"
     env_file:
       - .env
@@ -29,8 +31,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./conf.d:/etc/nginx/conf.d
-      - ./static:/static
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
     networks:
       - web_nw
     depends_on:
