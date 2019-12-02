@@ -88,8 +88,12 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
@@ -130,7 +134,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
+
+# SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
+# STATICFILES_DIRS = (
+#   os.path.join(SITE_ROOT, 'static/'),
+# )
 
 # AWS
 
