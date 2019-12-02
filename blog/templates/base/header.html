@@ -23,22 +23,13 @@
                     <i class="fas fa-grin-beam"></i>&nbsp;About Me
                 </a>
             </li>
+            {% for social_profile in social_profiles %}
             <li class="nav-item">
-                <a class="nav-link header-link" href="https://www.instagram.com/the_avocadoist" target="_blank">
-                    <i class="fab fa-instagram"></i>&nbsp;Avocadoist
+                <a class="nav-link header-link" href="{{ social_profile.link }}" target="_blank">
+                    <i class="{{ social_profile.social_type.icon }}"></i>&nbsp;{{ social_profile.name }}
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link header-link" href="https://www.instagram.com/carlirae__" target="_blank">
-                    <i class="fab fa-instagram"></i>&nbsp;Personal
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link header-link" href="https://www.linkedin.com/in/carli-auran-7a884834/"
-                   target="_blank">
-                    <i class="fab fa-linkedin"></i></i>&nbsp;Business
-                </a>
-            </li>
+            {% endfor %}
         </ul>
     </div>
 </nav>
@@ -55,5 +46,8 @@
             document.getElementById("header-subtitle").classList.remove('header-small');
         }
     }
+
+
+
 
 </script>
