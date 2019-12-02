@@ -2,6 +2,7 @@ boto3==1.10.28
 botocore==1.13.28
 Django==2.2.7
 django-recaptcha==2.0.5
+django-richtextfield==1.4.0
 django-storages==1.8
 docutils==0.15.2
 gunicorn==20.0.4

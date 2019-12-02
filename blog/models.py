@@ -4,6 +4,7 @@ from user.models import AnonymousUser
 from app.models import AbstractBaseModel
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
+from djrichtextfield.models import RichTextField
 
 
 class Tag(AbstractBaseModel):
@@ -25,7 +26,7 @@ class Post(AbstractBaseModel):
     """
     title = models.CharField(_('title'), max_length=250)
     slug = models.CharField(_('slug'), max_length=250, unique=True)
-    body = models.TextField(_('body'))
+    body = RichTextField(_('body'))
     meta_title = models.CharField(_('meta title'), max_length=250, null=True)
     meta_description = models.CharField(_('meta description'), max_length=1000, null=True)
 

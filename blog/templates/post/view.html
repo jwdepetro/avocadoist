@@ -34,7 +34,7 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <p id="pb{{ post.id }}" style="white-space: pre-wrap;">{{ post.body }}</p>
+                    <p id="pb{{ post.id }}" style="white-space: pre-wrap;">{{ post.body | safe }}</p>
                     <hr>
                     <div class="row mb-2" id="comments">
                         <div class="col">

@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <p id="pb{{ post.id }}">
-                        {{ post.body | slice:'0:200' }}...
+                        {{ post.body | striptags | slice:'0:200' }}...
                     </p>
                     <div class="row justify-content-between">
                         <div class="col text-left">

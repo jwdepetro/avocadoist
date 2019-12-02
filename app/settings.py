@@ -53,7 +53,8 @@ INSTALLED_APPS = [
 
     # Vendors
     'storages',
-    'captcha'
+    'captcha',
+    'djrichtextfield'
 ]
 
 # endregion
@@ -183,5 +184,20 @@ MEDIAFILES_LOCATION = 'media'
 STATICFILES_STORAGE = 'app.storage.StaticStorage'
 
 DEFAULT_FILE_STORAGE = 'app.storage.MediaStorage'
+
+# endregion
+
+# region Rich text editor
+
+DJRICHTEXTFIELD_CONFIG = {
+    'js': ['//tinymce.cachefly.net/4.1/tinymce.min.js'],
+    'init_template': 'djrichtextfield/init/tinymce.js',
+    'settings': {
+        'menubar': True,
+        'plugins': 'link image',
+        'toolbar': 'bold italic | link image | removeformat',
+        'width': 700
+    }
+}
 
 # endregion

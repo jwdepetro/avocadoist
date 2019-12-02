@@ -18,7 +18,7 @@
                 </div>
                 {% endfor %}
             </div>
-            <p style="white-space: pre-wrap;">{{user_profile.body}}</p>
+            <p style="white-space: pre-wrap;">{{user_profile.body | safe}}</p>
         </div>
     </div>
 </div>

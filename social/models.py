@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from djrichtextfield.models import RichTextField
 from app.models import AbstractBaseModel
 from media.models import Image
 
@@ -30,7 +31,7 @@ class SocialProfile(AbstractBaseModel):
 
 class UserProfile(AbstractBaseModel):
     title = models.CharField(_('title'), max_length=250)
-    body = models.TextField(_('about me'))
+    body = RichTextField(_('about me'))
     image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='profile')
 
     class Meta:
