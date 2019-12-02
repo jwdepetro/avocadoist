@@ -30,7 +30,11 @@ DEBUG = bool(os.environ.get('APP_DEBUG', False))
 
 ALLOWED_HOSTS = []
 
-# Application definition
+WSGI_APPLICATION = 'app.wsgi.application'
+
+ROOT_URLCONF = 'app.urls'
+
+# region Installed apps
 
 INSTALLED_APPS = [
     # Django
@@ -52,6 +56,10 @@ INSTALLED_APPS = [
     'captcha'
 ]
 
+# endregion
+
+# region Middleware
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,7 +70,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'app.urls'
+# endregion
+
+# region Templates
 
 TEMPLATES = [
     {
@@ -81,9 +91,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+# endregion
 
-# Database
+# region Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
@@ -97,8 +107,12 @@ DATABASES = {
     }
 }
 
-# Password validation
+# endregion
+
+# region Auth
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = 'user.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -115,10 +129,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Custom User class
-AUTH_USER_MODEL = 'user.User'
+# endregion
 
-# Internationalization
+# region Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
@@ -130,6 +143,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# endregion
 
 # region AWS
 
@@ -149,12 +164,6 @@ AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
 # endregion
 
-# region Storage
-
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-# endregion
-
 # region Recaptcha
 
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
@@ -163,19 +172,16 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 
 # endregion
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# STATIC_URL = '/static/'
-#
-# AWS_LOCATION = 'static'
+# region Static files and media uploads
 
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+
 STATICFILES_LOCATION = 'static'
+
 MEDIAFILES_LOCATION = 'media'
+
 STATICFILES_STORAGE = 'app.storage.StaticStorage'
+
 DEFAULT_FILE_STORAGE = 'app.storage.MediaStorage'
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# endregion
