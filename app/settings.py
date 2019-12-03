@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import sys
 from dotenv import load_dotenv
 
 # Load environment variables from your .env file
@@ -112,6 +113,12 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
+
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'avocadoist-test'
+    }
 
 # endregion
 
