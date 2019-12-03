@@ -24,10 +24,10 @@ jobs:
           python manage.py test
   build-image:
     runs-on: ubuntu-latest
+    if: success()
     steps:
       - uses: actions/checkout@master
       - name: Publish to Docker hub
-        if: success()
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: jwdepetro/avocadoist
