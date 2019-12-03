@@ -19,5 +19,6 @@ jobs:
           APP_SECRET: testing
           RECAPTCHA_PUBLIC_KEY: pub-key
           RECAPTCHA_PRIVATE_KEY: private-key
+          DB_NAME: avocadoist-test
         run: |
           python manage.py test
