@@ -60,7 +60,7 @@ class PostComment(AbstractBaseModel):
     Blog post comment
     """
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_comments')
-    anonymous_user = models.ForeignKey(AnonymousUser, on_delete=models.CASCADE)
+    anonymous_user = models.ForeignKey(AnonymousUser, on_delete=models.CASCADE, related_name='post_comments')
     name = models.CharField(_('name'), max_length=30)
     comment = models.CharField(_('comment'), max_length=250)
 
