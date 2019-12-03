@@ -82,3 +82,4 @@ class PostCommentCase(TestCase):
         post_comment = create_post_comment(anonymous_user=anonymous_user)
 
         self.assertFalse(post_comment.is_user_blocked())
+        self.assertFalse(True)
