@@ -1,5 +1,8 @@
 name: CI
-on: [push]
+on:
+  push:
+  release:
+    types: [published]
 jobs:
   test:
     name: 🧪 Test
