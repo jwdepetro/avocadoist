@@ -22,13 +22,13 @@ jobs:
           DB_NAME: avocadoist-test
         run: |
           python manage.py test
-  build-image:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Publish to Registry
+          - uses: actions/checkout@master
+      - name: Publish to Docker hub
+        if: success()
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: jwdepetro/avocadoist
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          dockerfile: ./config/app/Dockerfile
+
