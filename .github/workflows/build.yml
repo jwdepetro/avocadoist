@@ -1,7 +1,7 @@
-name: unit tests
+name: test and build
 on: [push]
 jobs:
-  test-and-build:
+  unit test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -22,6 +22,10 @@ jobs:
           DB_NAME: avocadoist-test
         run: |
           python manage.py test
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
       - name: Publish to Docker hub
         if: success()
         uses: elgohr/Publish-Docker-Github-Action@master
