@@ -1,19 +1,19 @@
-name: test and build
+name: Build
 on: [push]
 jobs:
-  unit-test:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Set up Python 3.7
+      - name: install python 3.7
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
-      - name: Install dependencies
+      - name: install pip dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Test with pytest
+      - name: unit tests
         env:
           APP_DEBUG: 1
           APP_SECRET: testing
@@ -22,9 +22,9 @@ jobs:
           DB_NAME: avocadoist-test
         run: |
           python manage.py test
-  build-image:
+  build:
     runs-on: ubuntu-latest
-    if: success()
+    needs: [test]
     steps:
       - uses: actions/checkout@master
       - name: Publish to Docker hub
