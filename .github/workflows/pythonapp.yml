@@ -3,6 +3,8 @@ on: [push]
 env:
   APP_DEBUG: 1
   APP_SECRET: testing
+  RECAPTCHA_PUBLIC_KEY: pub-key
+  RECAPTCHA_PRIVATE_KEY: private-key
 jobs:
   build:
     runs-on: ubuntu-latest
