@@ -3,3 +3,8 @@
 docker-compose.yaml
 venv
 config
+.git
+.github
+.env-example
+.dockerignore
+README.md
