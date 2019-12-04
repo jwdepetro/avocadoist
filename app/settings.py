@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import sys
+import json
 from dotenv import load_dotenv
 
 # Load environment variables from your .env file
@@ -28,7 +30,7 @@ SECRET_KEY = os.environ.get('APP_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get('APP_DEBUG', False))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = json.loads(os.environ.get('ALLOWED_HOSTS', '[]'))
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
@@ -112,6 +114,12 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
+
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.environ.get('DB_NAME')
+    }
 
 # endregion
 
