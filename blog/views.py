@@ -48,26 +48,30 @@ def comment(request, slug):
     :param slug:
     :return:
     """
-    post = get_object_or_404(Post, slug=slug)
-    form = CommentForm(request.POST)
-
-    if not form.is_valid():
-        return render(request, 'post/view.html', {'post': post, 'form': form})
-
     try:
-        anonymous_user = AnonymousUser.objects.filter(identifier=request.session.session_key).get()
-    except AnonymousUser.DoesNotExist:
-        anonymous_user = AnonymousUser()
-        anonymous_user.identifier = request.session.session_key
-        anonymous_user.ip_address = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('REMOTE_ADDR')
-        anonymous_user.save()
+        post = get_object_or_404(Post, slug=slug)
+        form = CommentForm(request.POST)
 
-    if not anonymous_user.is_blocked:
-        post_comment = PostComment()
-        post_comment.name = form.cleaned_data['name']
-        post_comment.comment = form.cleaned_data['comment']
-        post_comment.anonymous_user = anonymous_user
-        post_comment.post = post
-        post_comment.save()
+        if not form.is_valid():
+            return render(request, 'post/view.html', {'post': post, 'form': form})
 
-    return redirect('view', slug=post.slug)
+        try:
+            anonymous_user = AnonymousUser.objects.filter(identifier=request.session.session_key).get()
+        except AnonymousUser.DoesNotExist:
+            anonymous_user = AnonymousUser()
+            anonymous_user.identifier = request.session.session_key
+            anonymous_user.ip_address = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('REMOTE_ADDR')
+            anonymous_user.save()
+
+        if not anonymous_user.is_blocked:
+            post_comment = PostComment()
+            post_comment.name = form.cleaned_data['name']
+            post_comment.comment = form.cleaned_data['comment']
+            post_comment.anonymous_user = anonymous_user
+            post_comment.post = post
+            post_comment.save()
+
+        return redirect('view', slug=post.slug)
+    except Exception as e:
+        print('EXCEPTION ENCOUNTERED')
+        print(str(e))
