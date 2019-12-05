@@ -184,6 +184,8 @@ RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
 
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 
+RECAPTCHA_PROXY = {'http': 'http://127.0.0.1:8002', 'https': 'https://127.0.0.1:8002'}
+
 # endregion
 
 # region Static files and media uploads
