@@ -60,10 +60,12 @@ jobs:
         uses: actions/checkout@master
 
       - name: Set version from tag
-        run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+        run: |
+          echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+          echo Version ${{ env.RELEASE_VERSION }} will be deployed
 
       - name: Generate deployment package
-        run: zip deploy.zip ./config/app/Dockerrun.aws.json
+        run: zip -j deploy.zip ./config/app/Dockerrun.aws.json
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v3
