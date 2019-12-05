@@ -72,7 +72,8 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: avocadoist
           environment_name: avocadoist-prod
-          version_label: ${{ env.RELEASE_VERSION }}
+#          version_label: ${{ env.RELEASE_VERSION }}
+          version_label: avocadoist-latest-django-1
           region: us-east-2
           deployment_package: deploy.zip
 
