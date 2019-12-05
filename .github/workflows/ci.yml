@@ -8,16 +8,21 @@ jobs:
     name: 🧪 Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+
+      - name: Checkout code
+        uses: actions/checkout@master
+
       - name: Install Python 3.7
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: unit tests
+
+      - name: Unit Tests
         env:
           APP_DEBUG: 1
           APP_SECRET: testing
@@ -26,12 +31,16 @@ jobs:
           DB_NAME: avocadoist-test
         run: |
           python manage.py test
+
   build-image:
     name: 🛠 Build Image
     runs-on: ubuntu-latest
     needs: [test]
     steps:
-      - uses: actions/checkout@master
+
+      - name: Checkout code
+        uses: actions/checkout@master
+
       - name: Publish to Docker Hub
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
@@ -39,4 +48,30 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           dockerfile: ./config/app/Dockerfile
+
+  deploy-image:
+    name: 📦 Deploy Image
+    runs-on: ubuntu-latest
+    needs: [test, build-image]
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: Set version from tag
+        run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+
+      - name: Generate deployment package
+        run: zip deploy.zip ./config/app/Dockerrun.aws.json
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v3
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: avocadoist
+          environment_name: avocadoist-prod
+          version_label: ${{ env.RELEASE_VERSION }}
+          region: us-east-2
+          deployment_package: deploy.zip
 
