@@ -185,8 +185,8 @@ RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 
 RECAPTCHA_PROXY = {
-    'http': 'http://localhost',
-    'https': 'https://localhost'
+    'http': 'http://theavocadoist.com',
+    'https': 'https://theavocadoist.com'
 }
 
 # endregion
