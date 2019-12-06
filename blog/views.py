@@ -61,7 +61,7 @@ def comment(request, slug):
         except AnonymousUser.DoesNotExist:
             anonymous_user = AnonymousUser()
             anonymous_user.identifier = request.session.session_key
-            anonymous_user.ip_address = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('REMOTE_ADDR')
+            anonymous_user.ip_address = '123.123.123.123'
             anonymous_user.save()
 
         if not anonymous_user.is_blocked:
