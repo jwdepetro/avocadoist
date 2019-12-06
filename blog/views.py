@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
 from blog.models import Post, PostTag, PostComment
 from blog.forms import CommentForm
 from user.models import AnonymousUser
@@ -75,3 +76,4 @@ def comment(request, slug):
     except Exception as e:
         print('EXCEPTION ENCOUNTERED')
         print(str(e))
+        return HttpResponse(str(e))
