@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from blog.models import Post, PostTag, PostComment
 from blog.forms import CommentForm
 from user.models import AnonymousUser
+from app.utils import get_client_ip, get_anonymous_id
 
 
 def index(request):
@@ -60,8 +61,8 @@ def comment(request, slug):
             anonymous_user = AnonymousUser.objects.filter(identifier=request.session.session_key).get()
         except AnonymousUser.DoesNotExist:
             anonymous_user = AnonymousUser()
-            anonymous_user.identifier = request.session.session_key
-            anonymous_user.ip_address = '123.123.123.123'
+            anonymous_user.identifier = get_anonymous_id(request)
+            anonymous_user.ip_address = get_client_ip(request)
             anonymous_user.save()
 
         if not anonymous_user.is_blocked:
