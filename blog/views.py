@@ -1,7 +1,6 @@
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
 from blog.models import Post, PostTag, PostComment
 from blog.forms import CommentForm
 from user.models import AnonymousUser
@@ -50,31 +49,26 @@ def comment(request, slug):
     :param slug:
     :return:
     """
+    post = get_object_or_404(Post, slug=slug)
+    form = CommentForm(request.POST)
+
+    if not form.is_valid():
+        return render(request, 'post/view.html', {'post': post, 'form': form})
+
     try:
-        post = get_object_or_404(Post, slug=slug)
-        form = CommentForm(request.POST)
+        anonymous_user = AnonymousUser.objects.filter(identifier=request.session.session_key).get()
+    except AnonymousUser.DoesNotExist:
+        anonymous_user = AnonymousUser()
+        anonymous_user.identifier = get_anonymous_id(request)
+        anonymous_user.ip_address = get_client_ip(request)
+        anonymous_user.save()
 
-        if not form.is_valid():
-            return render(request, 'post/view.html', {'post': post, 'form': form})
+    if not anonymous_user.is_blocked:
+        post_comment = PostComment()
+        post_comment.name = form.cleaned_data['name']
+        post_comment.comment = form.cleaned_data['comment']
+        post_comment.anonymous_user = anonymous_user
+        post_comment.post = post
+        post_comment.save()
 
-        try:
-            anonymous_user = AnonymousUser.objects.filter(identifier=request.session.session_key).get()
-        except AnonymousUser.DoesNotExist:
-            anonymous_user = AnonymousUser()
-            anonymous_user.identifier = get_anonymous_id(request)
-            anonymous_user.ip_address = get_client_ip(request)
-            anonymous_user.save()
-
-        if not anonymous_user.is_blocked:
-            post_comment = PostComment()
-            post_comment.name = form.cleaned_data['name']
-            post_comment.comment = form.cleaned_data['comment']
-            post_comment.anonymous_user = anonymous_user
-            post_comment.post = post
-            post_comment.save()
-
-        return redirect('view', slug=post.slug)
-    except Exception as e:
-        print('EXCEPTION ENCOUNTERED')
-        print(str(e))
-        return HttpResponse(str(e))
+    return redirect('view', slug=post.slug)
