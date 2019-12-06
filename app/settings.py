@@ -184,11 +184,6 @@ RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
 
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 
-RECAPTCHA_PROXY = {
-    'http': 'http://theavocadoist.com',
-    'https': 'https://theavocadoist.com'
-}
-
 # endregion
 
 # region Static files and media uploads
