@@ -1,8 +1,15 @@
-from django.db import models
+"""
+Defines the models for the user module.
+"""
+
+# pylint: disable-msg=R0903
+
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from user.managers import UserManager
+
 from app.models import AbstractBaseModel
+from user.managers import UserManager
 
 
 class User(AbstractUser):
@@ -18,6 +25,9 @@ class User(AbstractUser):
     objects = UserManager()
 
     class Meta:
+        """
+        Override the table name.
+        """
         db_table = 'user_user'
 
     def __str__(self):
@@ -35,6 +45,9 @@ class AnonymousUser(AbstractBaseModel):
     updated_at = models.DateTimeField(_('updated at'), auto_now=True)
 
     class Meta:
+        """
+        Override the table name.
+        """
         db_table = 'user_anonymous_user'
 
     def __str__(self):

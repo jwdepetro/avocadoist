@@ -1,3 +1,5 @@
-from django.shortcuts import render
+"""
+Defines the views and routes for the user module.
+"""
 
-# Create your views here.
+# from django.shortcuts import render
