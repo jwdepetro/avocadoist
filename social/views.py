@@ -1,3 +1,9 @@
+"""
+Defines the views and routes for the social module.
+"""
+
+# pylint: disable-msg=E1101
+
 from django.shortcuts import render
 from social.models import UserProfile
 

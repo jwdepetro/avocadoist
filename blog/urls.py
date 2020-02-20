@@ -1,3 +1,9 @@
+"""
+Defines the URLs for the blog module.
+"""
+
+# pylint: disable-msg=C0103
+
 from django.urls import path
 
 from . import views

@@ -1,3 +1,9 @@
+"""
+Defines all models for the media module.
+"""
+
+# pylint: disable-msg=R0903
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from app.models import AbstractBaseModel
@@ -13,6 +19,9 @@ class Image(AbstractBaseModel):
     image = models.FileField(upload_to='images')
 
     class Meta:
+        """
+        Override the table name.
+        """
         db_table = 'media_image'
 
     def __str__(self):
