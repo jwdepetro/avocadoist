@@ -1,3 +1,9 @@
+"""
+Defines all generic base models across the entire app.
+"""
+
+# pylint: disable-msg=R0903
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -10,4 +16,7 @@ class AbstractBaseModel(models.Model):
     updated_at = models.DateTimeField(_('updated at'), auto_now=True)
 
     class Meta:
+        """
+        Define the model as abstract to avoid migrations.
+        """
         abstract = True

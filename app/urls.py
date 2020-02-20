@@ -1,3 +1,9 @@
+"""
+Defines all application URLs
+"""
+
+# pylint: disable-msg=C0103
+
 from django.contrib import admin
 from django.urls import path, include
 
