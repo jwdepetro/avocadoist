@@ -87,7 +87,12 @@ jobs:
         run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
 
       - name: Generate deployment package
-        run: zip -j deploy.zip ./config/app/Dockerrun.aws.json
+        # run: zip -j deploy.zip ./config/app/Dockerrun.aws.json
+        run: |
+          mkdir deploy
+          cp config/app/Dockerrun.aws.json deploy
+          cp -r .ebextensions deploy
+          zip -r deploy.zip deploy
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v6
