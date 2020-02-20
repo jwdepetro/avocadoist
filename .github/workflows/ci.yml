@@ -24,7 +24,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Pylint
-        runs: |
+        run: |
           python -m pylint app blog media social user
 
   test:
