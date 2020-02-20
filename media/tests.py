@@ -1,3 +1,5 @@
-from django.test import TestCase
+"""
+Unit tests for the media module.
+"""
 
-# Create your tests here.
+# from django.test import TestCase
